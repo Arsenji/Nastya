@@ -197,6 +197,18 @@ body {
     }
 }
 
+/* Упрощенная анимация для мобильных */
+@keyframes emojiFloatMobile {
+    0%, 100% { 
+        transform: translateY(0px); 
+        opacity: 0.5; 
+    }
+    50% { 
+        transform: translateY(-5px); 
+        opacity: 0.8; 
+    }
+}
+
 /* Заголовок */
 header {
     text-align: center;
@@ -375,9 +387,22 @@ footer {
     border-radius: 10px;
 }
 
-.main-video::-webkit-media-controls-enclosure {
-    background: transparent;
-    border-radius: 10px;
+/* Убираем ограничения для мобильных устройств */
+@media (max-width: 768px) {
+    .main-video::-webkit-media-controls {
+        background: transparent;
+        pointer-events: auto;
+    }
+    
+    .main-video::-webkit-media-controls-enclosure {
+        background: transparent;
+        pointer-events: auto;
+    }
+    
+    /* Упрощаем анимации для мобильных */
+    .heart, .pony, .candy, .floating-emoji {
+        animation: emojiFloatMobile 4s ease-in-out infinite;
+    }
 }
 
 /* Адаптивность */
