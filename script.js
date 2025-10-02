@@ -257,9 +257,14 @@ function createScrollElement() {
     element.className = randomType.class;
     element.id = `scroll-element-${elementCounter++}`;
     
-    // Позиция в верхней части экрана
+    // Позиция в верхней части экрана с безопасными зонами
     element.style.position = 'absolute';
-    element.style.top = Math.random() * 50 + '%';
+    
+    // Безопасная зона сверху (избегаем notch)
+    const safeTop = Math.max(60, getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top').replace('px', '') || 0);
+    const maxTop = Math.max(safeTop + 50, window.innerHeight * 0.4); // Не ниже 40% экрана для мобильных
+    
+    element.style.top = Math.random() * maxTop + safeTop + 'px';
     element.style.left = Math.random() * 80 + 10 + '%';
     element.style.animationDelay = Math.random() * 2 + 's';
     

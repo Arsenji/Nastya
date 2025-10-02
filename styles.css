@@ -5,12 +5,24 @@
     box-sizing: border-box;
 }
 
+/* Безопасные зоны для iPhone */
+:root {
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ffb8d4 0%, #ff8fb3 25%, #ff69b4 50%, #ff1493 75%, #dc143c 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+    padding-left: var(--safe-area-left);
+    padding-right: var(--safe-area-right);
 }
 
 .container {
@@ -107,11 +119,32 @@ body {
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
-.floating-photo:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
-.floating-photo:nth-child(2) { top: 78%; left: 88%; animation-delay: 2s; }
-.floating-photo:nth-child(3) { top: 18%; left: 92%; animation-delay: 4s; }
-.floating-photo:nth-child(4) { top: 88%; left: 12%; animation-delay: 1s; }
-.floating-photo:nth-child(5) { top: 52%; left: 5%; animation-delay: 3s; }
+/* Позиции фотографий с безопасными зонами */
+.floating-photo:nth-child(1) { 
+    top: max(15%, calc(var(--safe-area-top) + 60px)); 
+    left: max(12%, calc(var(--safe-area-left) + 20px)); 
+    animation-delay: 0s; 
+}
+.floating-photo:nth-child(2) { 
+    top: max(75%, calc(100% - var(--safe-area-bottom) - 160px)); 
+    left: max(85%, calc(100% - var(--safe-area-right) - 120px)); 
+    animation-delay: 2s; 
+}
+.floating-photo:nth-child(3) { 
+    top: max(20%, calc(var(--safe-area-top) + 80px)); 
+    left: max(90%, calc(100% - var(--safe-area-right) - 100px)); 
+    animation-delay: 4s; 
+}
+.floating-photo:nth-child(4) { 
+    top: max(85%, calc(100% - var(--safe-area-bottom) - 140px)); 
+    left: max(15%, calc(var(--safe-area-left) + 25px)); 
+    animation-delay: 1s; 
+}
+.floating-photo:nth-child(5) { 
+    top: max(55%, calc(var(--safe-area-top) + 200px)); 
+    left: max(8%, calc(var(--safe-area-left) + 15px)); 
+    animation-delay: 3s; 
+}
 
 .heart {
     position: absolute;
