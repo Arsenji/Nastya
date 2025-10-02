@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Твои Комплименты 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="hearts-background">
+            <!-- Старые сердечки -->
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            <div class="heart">💖</div>
+            
+            <!-- Анимированные пони -->
+            <div class="pony">🦄</div>
+            <div class="pony">🦄</div>
+            <div class="pony">🦄</div>
+            
+            <!-- Анимированные леденцы -->
+            <div class="candy">🍭</div>
+            <div class="candy">🍬</div>
+            <div class="candy">🍭</div>
+            <div class="candy">🍬</div>
+            <div class="candy">🍭</div>
+            
+            <!-- Дополнительные любовные эмодзи -->
+            <div class="floating-emoji">🌸</div>
+            <div class="floating-emoji">🌺</div>
+            <div class="floating-emoji">🌻</div>
+            <div class="floating-emoji">🌷</div>
+            <div class="floating-emoji">🌹</div>
+            <div class="floating-emoji">🌼</div>
+            
+            <!-- Милые животные -->
+            <div class="floating-emoji">🐰</div>
+            <div class="floating-emoji">🐱</div>
+            <div class="floating-emoji">🐶</div>
+            <div class="floating-emoji">🐻</div>
+            
+            <!-- Звезды и мерцание -->
+            <div class="floating-emoji">⭐</div>
+            <div class="floating-emoji">✨</div>
+            <div class="floating-emoji">🌟</div>
+            <div class="floating-emoji">💫</div>
+            
+            <!-- Сладости -->
+            <div class="floating-emoji">🍰</div>
+            <div class="floating-emoji">🧁</div>
+            <div class="floating-emoji">🍪</div>
+            <div class="floating-emoji">🍫</div>
+        </div>
+        
+        <header>
+            <h1 class="title">🤍 Настюшка и Арсюшка 🖤</h1>
+            <p class="subtitle">Каждый день новый комплимент для самой прекрасной девушки</p>
+        </header>
+
+        <main class="compliment-card">
+            <div class="card-content">
+                <h2 class="compliment-title">Твой комплимент на сегодня:</h2>
+                <p id="compliment-text" class="compliment-text">Нажми кнопку, чтобы получить красивый комплимент! ✨</p>
+            </div>
+            
+            <button id="new-compliment-btn" class="compliment-button">
+                <span class="button-text">Новый комплиментик для Настюши</span>
+                <span class="button-icon">💕</span>
+            </button>
+        </main>
+
+        <footer>
+            <p class="footer-text">Ты мое море<br>С месяцем тебя любовь моя 🖤</p>
+            <div class="date-display">
+                <span id="current-date"></span>
+            </div>
+        </footer>
+        
+        <!-- Видео секция -->
+        <div class="video-section">
+            <h3 class="video-title">💖 Для тебя 💖</h3>
+            <div class="video-container">
+                <video 
+                    id="main-video" 
+                    class="main-video" 
+                    controls 
+                    poster=""
+                    autoplay="false"
+                    muted
+                >
+                    <source src="Видео/Арсик.mp4" type="video/mp4">
+                    Твой браузер не поддерживает видео.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

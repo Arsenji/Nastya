@@ -1,0 +1,424 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffb8d4 0%, #ff8fb3 25%, #ff69b4 50%, #ff1493 75%, #dc143c 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Анимированные элементы на фоне */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Анимированные пони */
+.pony {
+    position: absolute;
+    color: #ff1493;
+    font-size: 30px;
+    animation: ponyRun 8s linear infinite;
+}
+
+.pony:nth-child(1) { top: 20%; animation-delay: 0s; }
+.pony:nth-child(2) { top: 60%; animation-delay: 3s; }
+.pony:nth-child(3) { top: 40%; animation-delay: 6s; }
+
+/* Анимированные леденцы */
+.candy {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 20px;
+    animation: candyFloat 4s ease-in-out infinite;
+}
+
+.candy:nth-child(1) { top: 30%; left: 10%; animation-delay: 0s; }
+.candy:nth-child(2) { top: 70%; left: 80%; animation-delay: 1s; }
+.candy:nth-child(3) { top: 50%; left: 60%; animation-delay: 2s; }
+.candy:nth-child(4) { top: 80%; left: 20%; animation-delay: 3s; }
+.candy:nth-child(5) { top: 10%; left: 70%; animation-delay: 4s; }
+
+/* Плавающие эмодзи */
+.floating-emoji {
+    position: absolute;
+    font-size: 25px;
+    animation: emojiFloat 5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+/* Позиции для плавающих эмодзи - цветы (избегаем центра экрана) */
+.floating-emoji:nth-child(12) { top: 5%; left: 10%; animation-delay: 0s; }
+.floating-emoji:nth-child(13) { top: 8%; left: 90%; animation-delay: 1s; }
+.floating-emoji:nth-child(14) { top: 80%; left: 8%; animation-delay: 2s; }
+.floating-emoji:nth-child(15) { top: 88%; left: 88%; animation-delay: 3s; }
+.floating-emoji:nth-child(16) { top: 25%; left: 5%; animation-delay: 4s; }
+.floating-emoji:nth-child(17) { top: 85%; left: 70%; animation-delay: 0.5s; }
+
+/* Позиции для плавающих эмодзи - животные (углы и края) */
+.floating-emoji:nth-child(18) { top: 12%; left: 75%; animation-delay: 1.5s; }
+.floating-emoji:nth-child(19) { top: 88%; left: 20%; animation-delay: 2.5s; }
+.floating-emoji:nth-child(20) { top: 18%; left: 85%; animation-delay: 3.5s; }
+.floating-emoji:nth-child(21) { top: 70%; left: 12%; animation-delay: 4.5s; }
+
+/* Позиции для плавающих эмодзи - звезды (края) */
+.floating-emoji:nth-child(22) { top: 6%; left: 68%; animation-delay: 1.8s; }
+.floating-emoji:nth-child(23) { top: 38%; left: 92%; animation-delay: 2.8s; }
+.floating-emoji:nth-child(24) { top: 78%; left: 8%; animation-delay: 0.8s; }
+.floating-emoji:nth-child(25) { top: 48%; left: 5%; animation-delay: 3.8s; }
+
+/* Позиции для плавающих эмодзи - сладости (углы) */
+.floating-emoji:nth-child(26) { top: 35%; left: 95%; animation-delay: 1.2s; }
+.floating-emoji:nth-child(27) { top: 90%; left: 88%; animation-delay: 2.2s; }
+.floating-emoji:nth-child(28) { top: 42%; left: 12%; animation-delay: 3.2s; }
+.floating-emoji:nth-child(29) { top: 8%; left: 28%; animation-delay: 1.7s; }
+
+/* Всплывающие фото */
+.floating-photo {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(214, 51, 132, 0.3);
+    animation: photoFloat 8s ease-in-out infinite;
+    opacity: 0.8;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.floating-photo:nth-child(1) { top: 12%; left: 8%; animation-delay: 0s; }
+.floating-photo:nth-child(2) { top: 78%; left: 88%; animation-delay: 2s; }
+.floating-photo:nth-child(3) { top: 18%; left: 92%; animation-delay: 4s; }
+.floating-photo:nth-child(4) { top: 88%; left: 12%; animation-delay: 1s; }
+.floating-photo:nth-child(5) { top: 52%; left: 5%; animation-delay: 3s; }
+
+.heart {
+    position: absolute;
+    color: rgba(255, 182, 193, 0.3);
+    font-size: 20px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.heart:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.heart:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+.heart:nth-child(3) { top: 40%; left: 60%; animation-delay: 2s; }
+.heart:nth-child(4) { top: 70%; left: 20%; animation-delay: 3s; }
+.heart:nth-child(5) { top: 30%; left: 70%; animation-delay: 4s; }
+.heart:nth-child(6) { top: 80%; left: 50%; animation-delay: 5s; }
+.heart:nth-child(7) { top: 10%; left: 40%; animation-delay: 2.5s; }
+.heart:nth-child(8) { top: 50%; left: 90%; animation-delay: 1.5s; }
+.heart:nth-child(9) { top: 25%; left: 30%; animation-delay: 3.5s; }
+.heart:nth-child(10) { top: 75%; left: 10%; animation-delay: 4.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(10deg); opacity: 0.7; }
+}
+
+/* Анимация пони */
+@keyframes ponyRun {
+    0% { transform: translateX(-50px); opacity: 0.6; }
+    50% { transform: translateX(50vw); opacity: 1; }
+    100% { transform: translateX(calc(100vw + 50px)); opacity: 0.6; }
+}
+
+/* Анимация леденцов */
+@keyframes candyFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+    25% { transform: translateY(-15px) rotate(5deg); opacity: 1; }
+    75% { transform: translateY(-5px) rotate(-3deg); opacity: 0.9; }
+}
+
+/* Анимация фото */
+@keyframes photoFloat {
+    0% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.6; 
+    }
+    25% { 
+        transform: translateY(-10px) rotate(3deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(-2deg); 
+        opacity: 0.9; 
+    }
+    75% { 
+        transform: translateY(-5px) rotate(2deg); 
+        opacity: 0.8; 
+    }
+    100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.6; 
+    }
+}
+
+/* Анимация плавающих эмодзи */
+@keyframes emojiFloat {
+    0% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        opacity: 0.6; 
+    }
+    25% { 
+        transform: translateY(-8px) rotate(5deg) scale(1.1); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(-3deg) scale(0.9); 
+        opacity: 0.9; 
+    }
+    75% { 
+        transform: translateY(-5px) rotate(3deg) scale(1.05); 
+        opacity: 0.7; 
+    }
+    100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+        opacity: 0.6; 
+    }
+}
+
+/* Заголовок */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #d63384;
+    text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.3);
+    margin-bottom: 10px;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-weight: 300;
+}
+
+@keyframes titleGlow {
+    from { text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.3); }
+    to { text-shadow: 2px 2px 8px rgba(214, 51, 132, 0.6), 0 0 20px rgba(214, 51, 132, 0.4); }
+}
+
+/* Основная карточка с комплиментом */
+.compliment-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(214, 51, 132, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px rgba(214, 51, 132, 0.2);
+    text-align: center;
+    margin: 40px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.compliment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(214, 51, 132, 0.25);
+}
+
+.compliment-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #d63384;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.compliment-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #495057;
+    margin: 30px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 100%);
+    border-radius: 15px;
+    border-left: 4px solid #d63384;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.compliment-text.animated {
+    animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+    from { 
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Кнопка */
+.compliment-button {
+    background: linear-gradient(135deg, #d63384 0%, #e91e63 50%, #f06292 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.compliment-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(214, 51, 132, 0.4);
+    background: linear-gradient(135deg, #e91e63 0%, #d63384 50%, #c2185b 100%);
+}
+
+.compliment-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
+}
+
+.button-icon {
+    font-size: 1.2rem;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.footer-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.date-display {
+    font-size: 0.9rem;
+    color: #adb5bd;
+}
+
+/* Видео секция */
+.video-section {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+.video-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #d63384;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.video-container {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(214, 51, 132, 0.25);
+    background: transparent;
+    margin: 0 auto;
+}
+
+.main-video {
+    width: 400px;
+    height: 400px;
+    display: block;
+    border-radius: 50%;
+    background: transparent;
+    object-fit: cover;
+}
+
+/* Специальный эффект для обрезания белого фона видео */
+.main-video::-webkit-media-controls {
+    background: rgba(214, 51, 132, 0.1);
+    border-radius: 10px;
+}
+
+.main-video::-webkit-media-controls-enclosure {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .compliment-card {
+        padding: 25px;
+        margin: 20px 0;
+    }
+    
+    .compliment-title {
+        font-size: 1.5rem;
+    }
+    
+    .compliment-text {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+    
+    .compliment-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .video-container {
+        max-width: 90%;
+    }
+    
+    .main-video {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .video-title {
+        font-size: 1.5rem;
+    }
+}
