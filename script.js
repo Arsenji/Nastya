@@ -240,21 +240,20 @@ let currentPhotoIndex = 0;
 function addFloatingPhotos() {
     const heartsBackground = document.querySelector('.hearts-background');
     
-    // Добавляем 5 фотографий с позициями дальше от центра
-    for (let i = 0; i < 5; i++) {
+    // Добавляем только 3 фотографии для быстрой загрузки
+    for (let i = 0; i < 3; i++) {
         const photo = document.createElement('img');
         photo.className = 'floating-photo';
+        photo.loading = 'lazy'; // Ленивая загрузка
         photo.src = photoList[i];
         photo.alt = 'Настюшка';
         photo.id = `photo-${i}`;
         
         // Позиции дальше от центра экрана
         const positions = [
-            { top: '5%', left: '5%', animationDelay: '0s' },
-            { top: '70%', left: '75%', animationDelay: '2s' },
-            { top: '20%', left: '80%', animationDelay: '4s' },
-            { top: '85%', left: '10%', animationDelay: '1s' },
-            { top: '50%', left: '60%', animationDelay: '3s' }
+            { top: '12%', left: '8%', animationDelay: '0s' },
+            { top: '78%', left: '88%', animationDelay: '2s' },
+            { top: '18%', left: '92%', animationDelay: '4s' }
         ];
         
         photo.style.top = positions[i].top;
@@ -286,7 +285,7 @@ function changePhotos() {
         }, 1000);
     });
     
-    currentPhotoIndex = (currentPhotoIndex + 5) % photoList.length;
+    currentPhotoIndex = (currentPhotoIndex + 3) % photoList.length;
 }
 
 // Применяем случайный фон и добавляем фото
