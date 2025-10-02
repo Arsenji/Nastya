@@ -233,8 +233,71 @@ const photoList = [
     'фото/IMG_0114.JPG'
 ];
 
-// Переменная для отслеживания текущей фотографии
+// Переменные для динамического контента
 let currentPhotoIndex = 0;
+let scrollElements = []; // Массив всех созданных элементов
+let elementCounter = 0;
+
+// Функция для создания случайного элемента при скролле
+function createScrollElement() {
+    const heartsBackground = document.querySelector('.hearts-background');
+    const elementTypes = [
+        { type: 'heart', emoji: '💖', class: 'heart' },
+        { type: 'pony', emoji: '🦄', class: 'pony' },
+        { type: 'candy', emoji: Math.random() > 0.5 ? '🍭' : '🍬', class: 'candy' },
+        { type: 'flower', emoji: Math.random() > 0.5 ? '🌸' : '🌹', class: 'floating-emoji' },
+        { type: 'animal', emoji: Math.random() > 0.5 ? '🐱' : '🐰', class: 'floating-emoji' },
+        { type: 'star', emoji: Math.random() > 0.5 ? '⭐' : '✨', class: 'floating-emoji' },
+        { type: 'photo', src: photoList[Math.floor(Math.random() * photoList.length)], class: 'floating-photo' }
+    ];
+    
+    const randomType = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+    const element = document.createElement(randomType.type === 'photo' ? 'img' : 'div');
+    
+    element.className = randomType.class;
+    element.id = `scroll-element-${elementCounter++}`;
+    
+    // Позиция в верхней части экрана
+    element.style.position = 'absolute';
+    element.style.top = Math.random() * 50 + '%';
+    element.style.left = Math.random() * 80 + 10 + '%';
+    element.style.animationDelay = Math.random() * 2 + 's';
+    
+    if (randomType.type === 'photo') {
+        element.src = randomType.src;
+        element.loading = 'lazy';
+        element.alt = 'Настюшка';
+        element.style.width = '80px';
+        element.style.height = '80px';
+    } else {
+        element.textContent = randomType.emoji;
+        element.style.fontSize = '20px';
+    }
+    
+    heartsBackground.appendChild(element);
+    scrollElements.push(element);
+    
+    // Удаляем элемент через 8 секунд
+    setTimeout(() => {
+        if (element && element.parentNode) {
+            element.parentNode.removeChild(element);
+            const index = scrollElements.indexOf(element);
+            if (index > -1) scrollElements.splice(index, 1);
+        }
+    }, 8000);
+}
+
+// Обработчик скролла
+let scrollTimeout;
+function handleScroll() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        // Создаем новый элемент с вероятностью 30%
+        if (Math.random() < 0.3) {
+            createScrollElement();
+        }
+    }, 200);
+}
 
 // Функция для добавления плавающих фотографий
 function addFloatingPhotos() {
@@ -295,4 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Автоматическая смена фотографий каждые 5 секунд
     setInterval(changePhotos, 5000);
+    
+    // Добавляем обработчик скролла
+    window.addEventListener('scroll', handleScroll);
+    
+    // Создаем начальные элементы для демонстрации
+    setTimeout(() => createScrollElement(), 1000);
+    setTimeout(() => createScrollElement(), 2000);
 });
