@@ -238,59 +238,78 @@ let currentPhotoIndex = 0;
 let scrollElements = []; // Массив всех созданных элементов
 let elementCounter = 0;
 
-// Функция для создания случайного элемента при скролле
-function createScrollElement() {
-    const heartsBackground = document.querySelector('.hearts-background');
-    const elementTypes = [
-        { type: 'heart', emoji: '💖', class: 'heart' },
-        { type: 'pony', emoji: '🦄', class: 'pony' },
-        { type: 'candy', emoji: Math.random() > 0.5 ? '🍭' : '🍬', class: 'candy' },
-        { type: 'flower', emoji: Math.random() > 0.5 ? '🌸' : '🌹', class: 'floating-emoji' },
-        { type: 'animal', emoji: Math.random() > 0.5 ? '🐱' : '🐰', class: 'floating-emoji' },
-        { type: 'star', emoji: Math.random() > 0.5 ? '⭐' : '✨', class: 'floating-emoji' },
-        { type: 'photo', src: photoList[Math.floor(Math.random() * photoList.length)], class: 'floating-photo' }
-    ];
-    
-    const randomType = elementTypes[Math.floor(Math.random() * elementTypes.length)];
-    const element = document.createElement(randomType.type === 'photo' ? 'img' : 'div');
-    
-    element.className = randomType.class;
-    element.id = `scroll-element-${elementCounter++}`;
-    
-    // Позиция в верхней части экрана с безопасными зонами
-    element.style.position = 'absolute';
-    
-    // Безопасная зона сверху (избегаем notch)
-    const safeTop = Math.max(60, getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top').replace('px', '') || 0);
-    const maxTop = Math.max(safeTop + 50, window.innerHeight * 0.4); // Не ниже 40% экрана для мобильных
-    
-    element.style.top = Math.random() * maxTop + safeTop + 'px';
-    element.style.left = Math.random() * 80 + 10 + '%';
-    element.style.animationDelay = Math.random() * 2 + 's';
-    
-    if (randomType.type === 'photo') {
-        element.src = randomType.src;
-        element.loading = 'lazy';
-        element.alt = 'Настюшка';
-        element.style.width = '80px';
-        element.style.height = '80px';
-    } else {
-        element.textContent = randomType.emoji;
-        element.style.fontSize = '20px';
-    }
-    
-    heartsBackground.appendChild(element);
-    scrollElements.push(element);
-    
-    // Удаляем элемент через 8 секунд
-    setTimeout(() => {
-        if (element && element.parentNode) {
-            element.parentNode.removeChild(element);
-            const index = scrollElements.indexOf(element);
-            if (index > -1) scrollElements.splice(index, 1);
+    // Функция для создания случайного элемента при скролле
+    function createScrollElement() {
+        const heartsBackground = document.querySelector('.hearts-background');
+        const elementTypes = [
+            { type: 'heart', emoji: '💖', class: 'heart' },
+            { type: 'pony', emoji: '🦄', class: 'pony' },
+            { type: 'candy', emoji: Math.random() > 0.5 ? '🍭' : '🍬', class: 'candy' },
+            { type: 'flower', emoji: Math.random() > 0.5 ? '🌸' : '🌹', class: 'floating-emoji' },
+            { type: 'animal', emoji: Math.random() > 0.5 ? '🐱' : '🐰', class: 'floating-emoji' },
+            { type: 'star', emoji: Math.random() > 0.5 ? '⭐' : '✨', class: 'floating-emoji' },
+            { type: 'sweet', emoji: Math.random() > 0.5 ? '🍄' : '🦋', class: 'floating-emoji' },
+            { type: 'photo', src: photoList[Math.floor(Math.random() * photoList.length)], class: 'floating-photo' }
+        ];
+        
+        const randomType = elementTypes[Math.floor(Math.random() * elementTypes.length)];
+        const element = document.createElement(randomType.type === 'photo' ? 'img' : 'div');
+        
+        element.className = randomType.class;
+        element.id = `scroll-element-${elementCounter++}`;
+        
+        // Случайное позиционирование с избеганием текстовой области
+        element.style.position = 'absolute';
+        
+        // Безопасная зона сверху (избегаем notch)
+        const safeTop = Math.max(60, getComputedStyle(document.documentElement).getPropertyValue('--safe-area-top').replace('px', '') || 0);
+        const safeBottom = window.innerHeight * 0.75; // Не ниже 75% экрана чтобы избежать текст
+        const safeLeft = Math.max(20, getComputedStyle(document.documentElement).getPropertyValue('--safe-area-left').replace('px', '') || 0);
+        const safeRight = Math.min(80, 100 - parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-area-right').replace('px', '') || 0));
+        
+        // Хаотичные позиции с учетом текстовой области в центре
+        const randomTop = Math.random() * (safeBottom - safeTop) + safeTop;
+        const randomLeft = Math.random() * (safeRight - safeLeft) + safeLeft;
+        
+        element.style.top = randomTop + 'px';
+        element.style.left = randomLeft + '%';
+        
+        // Случайная хаотичная анимация для эмодзи
+        const crazyAnimations = ['emojiFloatCrazy1', 'emojiFloatCrazy2', 'emojiFloatCrazy3', 'emojiFloatCrazy4'];
+        const randomAnimSpeed = Math.random() * 4 + 6; // 6-10 секунд
+        const randomDelay = Math.random() * 3;
+        
+        if (randomType.class === 'floating-emoji') {
+            const randomAnim = crazyAnimations[Math.floor(Math.random() * crazyAnimations.length)];
+            element.style.animation = `${randomAnim} ${randomAnimSpeed}s ease-in-out infinite`;
+            element.style.animationDelay = randomDelay + 's';
+        } else {
+            element.style.animationDelay = randomDelay + 's';
         }
-    }, 8000);
-}
+        
+        if (randomType.type === 'photo') {
+            element.src = randomType.src;
+            element.loading = 'lazy';
+            element.alt = 'Настюшка';
+            element.style.width = '80px';
+            element.style.height = '80px';
+        } else {
+            element.textContent = randomType.emoji;
+            element.style.fontSize = '20px';
+        }
+        
+        heartsBackground.appendChild(element);
+        scrollElements.push(element);
+        
+        // Удаляем элемент через 8 секунд
+        setTimeout(() => {
+            if (element && element.parentNode) {
+                element.parentNode.removeChild(element);
+                const index = scrollElements.indexOf(element);
+                if (index > -1) scrollElements.splice(index, 1);
+            }
+        }, 8000);
+    }
 
 // Обработчик скролла
 let scrollTimeout;
