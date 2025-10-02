@@ -355,32 +355,6 @@ footer {
     padding: 20px;
 }
 
-/* Дополнительные секции */
-.extra-content {
-    margin: 50px auto;
-    max-width: 600px;
-    text-align: center;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(214, 51, 132, 0.15);
-    backdrop-filter: blur(10px);
-}
-
-.extra-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    color: #d63384;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.extra-text {
-    font-size: 1.1rem;
-    color: #495057;
-    line-height: 1.8;
-}
-
 .video-title {
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
